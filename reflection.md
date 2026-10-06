@@ -5,6 +5,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+When I first ran the game, it was a Streamlit number-guessing game with a difficulty selector, a guess box, and a debug panel showing the secret number. It looked normal at first, but the hints did not match my guesses. For example, I guessed 0 when the secret was 58 and the game told me to go lower, which is impossible. I also found that New Game did not restart the game after I lost, and that the game accepted guesses outside the 1 to 100 range.
+
+**Bug Reproduction Log**
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
@@ -14,9 +17,10 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Guess of 0 (secret was 58, Normal difficulty) | "Too Low" outcome with a hint to go higher | Hint said "Go LOWER!" | none |
+| Lose a round, then click New Game | A fresh game starts with reset attempts and score | Still shows "Game over. Start a new game to try again." | none |
+| Guess of 0 (valid range is 1 to 100) | Rejected as out of range | Accepted and counted as an attempt, and the score dropped | none |
+| Final guess that ends the game | "Attempts left" shows 0 when the game is over | "Attempts left: 1" displayed next to "Out of attempts!" | none |
 
 ---
 
