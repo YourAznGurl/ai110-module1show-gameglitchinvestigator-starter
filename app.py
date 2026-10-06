@@ -1,6 +1,12 @@
 import random
 import streamlit as st
-from logic_utils import get_range_for_difficulty, parse_guess, check_guess, update_score
+from logic_utils import (
+    get_range_for_difficulty,
+    parse_guess,
+    check_guess,
+    update_score,
+    new_game_state,
+)
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -30,8 +36,9 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+# FIX: attempts now starts at 0 so the player gets the full number of allowed guesses.
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -69,11 +76,11 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
-# FIXME: New Game never resets status, score, or history, and ignores difficulty range
+# FIX: Reset all session state via new_game_state() instead of only attempts and secret.
+# Done with AI assistance; verified with pytest and in the live game.
 if new_game:
-    st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
-    st.success("New game started.")
+    for key, value in new_game_state(difficulty).items():
+        st.session_state[key] = value
     st.rerun()
 
 if st.session_state.status != "playing":
