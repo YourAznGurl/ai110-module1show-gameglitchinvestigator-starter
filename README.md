@@ -69,7 +69,15 @@ Sample game on Normal difficulty (secret number: 58):
 ## 🧪 Test Results
 
 ```
-Paste the real output of `python3 -m pytest` here
+============================= test session starts ==============================
+platform darwin -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/ena/Library/Mobile Documents/com~apple~CloudDocs/CEN4010 001/ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.15.1
+collected 9 items
+
+tests/test_game_logic.py .........                                       [100%]
+
+============================== 9 passed in 0.01s ===============================
 ```
 
 ## 🚀 Stretch Features
